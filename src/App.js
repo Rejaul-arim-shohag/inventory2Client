@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useState } from "react";
+import Sidebar from "./Components/Sidebar/Sidebar";
+import Navbar from "./Components/Navbar/Navbar";
+import Main from "./Components/Main/Main";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import Login from "./Pages/Login";
 function App() {
+  const pathname = window.location.pathname
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const token = localStorage.getItem("token");
+  const openSidebar = () => {
+    setSidebarOpen(true)
+  }
+  const closeSidebar = () => {
+    setSidebarOpen(false)
+  }
+if(pathname==="/"){
+  return(
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login/>}/>
+      </Routes>
+    </BrowserRouter>
+  )
+}
+else if(token){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="mainContainer">
+        <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
+        <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
+        <Main />
+      </div>
+    </BrowserRouter>
   );
+}
 }
 
 export default App;

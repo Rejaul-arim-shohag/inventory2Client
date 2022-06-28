@@ -1,0 +1,17 @@
+.main{
+    background: white;
+    grid-area: main;
+    overflow-y: auto;
+}
+@media only screen and (max-width: 855px) {
+    .main__cards {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 0;
+    }
+  
+    .charts {
+      grid-template-columns: 1fr;
+      margin-top: 30px;
+    }
+  }

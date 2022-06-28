@@ -1,0 +1,8 @@
+.create{
+    display:flex;
+   justify-content: space-between;
+}
+
+.btn-primary{
+    background:#4549A2 !important;
+}

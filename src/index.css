@@ -1,13 +1,153 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300&family=Public+Sans:wght@100;200;300;400;500;600&display=swap');
+/* styling scrollbar */
+::-webkit-scrollbar{
+  width:4px;
+  height:10px;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #a5aaad;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #c4c9c6;
+  border-radius: 10px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+::-webkit-scrollbar-thumb:hover {
+  background: #7164b9;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+/* <!-- HTML !-->
+<button class="button-9" role="button">Button 9</button> */
+
+/* CSS */
+.main_btn {
+  appearance: button;
+  backface-visibility: hidden;
+  background-color: #4549A2;
+  border-radius: 6px;
+  border-width: 0;
+  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif;
+  font-size: 100%;
+  height: 44px;
+  line-height: 1.15;
+  margin: 12px 0 0;
+  outline: none;
+  overflow: hidden;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transform: translateZ(0);
+  transition: all .2s,box-shadow .08s ease-in;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100px;
+}
+
+.main_btn:disabled {
+  cursor: default;
+}
+
+.main_btn:focus {
+  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
+}
+
+.mainContainer{
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 0.7fr 1fr 1fr 1fr;
+  grid-template-rows: 0.2fr 3fr;
+  grid-template-areas:
+    "sidebar nav nav nav"
+    "sidebar main main main";
+}
+
+.custom_container{
+    width:40%;
+    margin: 0 auto;
+}
+.actionBtn{
+  cursor: pointer;
+}
+.dropdown-toggle::after{
+  display: none !important;
+}
+.btn-success{
+  background:#4549A2 !important;
+}
+.customerSaveBtn{
+  display:flex;
+  justify-content:center;
+}
+th{
+  font-size: 14px;
+    font-weight: 400;
+}
+h1 {
+  font-size: 1.5em !important;
+}
+.expenseListCreate{
+  margin:0, auto;
+  text-align:center;
+}
+.select_Area{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2%;
+}
+.dashboard_container{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  grid-gap:1%;
+  grid-template-rows: 200px 200px;
+  background-color: #F5F7FA;
+}
+label.input-group-text {
+  height: 41px;
+}
+.purchaseId{
+  text-decoration: underline;
+  color:#55c912;
+  cursor: pointer;
+}
+.card{
+  background-color:rgb(253, 251, 251) !important;
+  border:0 !important;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.sidebar__title>svg{
+  color:rgb(250, 242, 242) !important;
+  margin-left:10px;
+}
+@media only screen and (max-width: 978px) {
+  .mainContainer {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 3fr;
+    grid-template-areas:
+      "nav"
+      "main";
+  }
+}
+@media only screen and (min-width: 978px) {
+  .sidebar__title>svg{
+    display:none;
+  }
+
 }

@@ -1,0 +1,20 @@
+.create_category{
+    width:70%;
+    margin: 30px auto;
+}
+#category{
+    margin:0 2%;
+    background: white;
+    margin-top: 0;
+}
+.inputAndButton{
+    display:grid;
+    grid-gap: 2%;
+    grid-template-columns: 1fr 0.2fr;
+}
+.category-Input{
+    height: 40px;
+}
+.category_btn{
+    margin-top:-13px
+}
