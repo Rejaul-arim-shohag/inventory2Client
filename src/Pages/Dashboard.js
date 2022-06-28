@@ -1,10 +1,9 @@
 import React, { useEffect, useState, PureComponent } from 'react';
 import { Button, Card } from 'react-bootstrap';
-import { BarChart, Area, Line, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { readCustomers, readSell, totalSell, totalExpense } from '../apiServices/allApi';
 import { SpinnerRoundOutlined } from 'spinners-react';
 const Dashboard = () => {
-    const [TotalSell, setTotalSell] = useState({});
+    const [TotalSell, setTotalSell] = useState();
     const [totalOrders, setTotalOrder] = useState([]);
     const [totalCUstomers, setTotalCustomer] = useState([]);
     const [TotalExpense, setTotalExpense] = useState([]);
@@ -19,9 +18,7 @@ const Dashboard = () => {
             setSells(result);
         })
     }, [])
-    if(TotalSell<0){
-        return <SpinnerRoundOutlined size={50} thickness={100} speed={100} color="#36ad47" />
-    }
+    console.log(TotalSell)
     return (
         <div className="container px-5">
             <h4 className="mb-4">Dashboard</h4>
@@ -32,7 +29,7 @@ const Dashboard = () => {
                             <Card.Text>
                                 Total sells
                             </Card.Text>
-                            <Card.Title className="py-3"><h1 className="text-center">{TotalSell.sum}</h1></Card.Title>
+                            <Card.Title className="py-3"><h1 className="text-center">{TotalSell?.sum ?TotalSell?.sum :0}</h1></Card.Title>
                         </Card.Body>
                     </Card>
                 </div>
@@ -44,7 +41,7 @@ const Dashboard = () => {
                             <Card.Text>
                                 Total Customers
                             </Card.Text>
-                            <Card.Title className="py-3"><h1 className="text-center">{totalCUstomers.length}</h1></Card.Title>
+                            <Card.Title className="py-3"><h1 className="text-center">{totalCUstomers?.length}</h1></Card.Title>
                         </Card.Body>
                     </Card>
                 </div>
@@ -54,7 +51,8 @@ const Dashboard = () => {
                             <Card.Text>
                                 Total Expense
                             </Card.Text>
-                            <Card.Title className="py-3"><h1 className="text-center">{TotalExpense.sum}</h1></Card.Title>
+                            <Card.Title className="py-3"><h1
+                            className="text-center">{TotalExpense?.sum?TotalExpense?.sum:0}</h1></Card.Title>
                         </Card.Body>
                     </Card>
                 </div>

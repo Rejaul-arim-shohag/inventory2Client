@@ -5,20 +5,20 @@ import Swal from 'sweetalert2';
 
 const Products = () => {
     let navigate = useNavigate();
-    const [products, setProduct]=useState([]);
+    const [products, setProduct] = useState([]);
     console.log(products)
     console.log(products)
-    const handleCreateProduct=()=>{
+    const handleCreateProduct = () => {
         navigate("/addNewProduct")
     }
-    useEffect(()=>{
+    useEffect(() => {
         readProducts()
-        .then((result)=>{
-            setProduct(result.data.data)
-        })
-    },[])
+            .then((result) => {
+                setProduct(result.data.data)
+            })
+    }, [])
 
-    const handleDeleteProduct =(id)=>{
+    const handleDeleteProduct = (id) => {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -27,7 +27,7 @@ const Products = () => {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
-        },   
+        },
         ).then((result) => {
             if (result.isConfirmed) {
                 deleteProduct(id)
@@ -45,8 +45,8 @@ const Products = () => {
             }
         })
     }
-    const navigateToEditProduct=(productId)=>{
-        navigate("/product/edit/"+productId)
+    const navigateToEditProduct = (productId) => {
+        navigate("/product/edit/" + productId)
     }
     return (
         <div>
@@ -59,11 +59,12 @@ const Products = () => {
                 </div>
             </div>
             <div className="product_list">
-            <div className="expenseTypeList mt-2">
+                <div className="expenseTypeList mt-2">
                     <div className="container table-responsive">
                         <table className="table">
                             <thead>
                                 <tr className="text-center">
+                                    <th>ProductID</th>
                                     <th>Name</th>
                                     <th>Category</th>
                                     <th>Brand</th>
@@ -77,14 +78,15 @@ const Products = () => {
                                     products.map((item, i) => {
                                         return (
                                             <tr key={item.ExpenseID}>
-                                                <td className="text-left">{item.Name}</td>
+                                                <td >{item.ProductID}</td>
+                                                <td >{item.Name}</td>
                                                 <td>{item.categoryName}</td>
                                                 <td>{item.brandName}</td>
                                                 <td>{item.Price}</td>
                                                 <td>{item.Stock}</td>
                                                 <td>
-                                                    <button onClick={()=>handleDeleteProduct(item.ProductID)} className="btn btn-danger mx-1">Delete</button>
-                                                    <button onClick={()=>navigateToEditProduct(item.ProductID)} className="btn btn-primary mx-1">Edit</button>
+                                                    <button onClick={() => handleDeleteProduct(item.ProductID)} className="btn btn-danger mx-1">Delete</button>
+                                                    <button onClick={() => navigateToEditProduct(item.ProductID)} className="btn btn-primary mx-1">Edit</button>
                                                 </td>
                                             </tr>
                                         )
@@ -93,7 +95,7 @@ const Products = () => {
                             </tbody>
                         </table>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

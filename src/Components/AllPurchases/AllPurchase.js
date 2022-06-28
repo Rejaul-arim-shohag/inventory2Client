@@ -46,7 +46,7 @@ const AllPurchase = () => {
         navigate("/purchase-product/" + id)
     }
 
-    if (purchases.length > 0) {
+   
         return (
             <div>
                 <div className="container">
@@ -92,10 +92,7 @@ const AllPurchase = () => {
                 </div>
             </div>
         );
-    }
-    else if (purchases.length < 0) {
-        return <SpinnerRoundOutlined size={50} thickness={100} speed={100} color="#36ad47" />
-    }
+    
 
 
 };

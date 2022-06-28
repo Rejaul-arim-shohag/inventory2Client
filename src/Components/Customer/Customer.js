@@ -24,7 +24,7 @@ const Customer = () => {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
-        },   
+        },
         ).then((result) => {
             if (result.isConfirmed) {
                 deleteCustomer(id)
@@ -48,20 +48,20 @@ const Customer = () => {
         //     }
         // })
     }
-    const handleNavigateToCreate = ()=>{
-       navigate("/customers/newCustomer")
+    const handleNavigateToCreate = () => {
+        navigate("/customers/newCustomer")
     }
-    const handleNavigateToUpdate=(id)=>{
-        navigate("/customers/edit/"+id)
+    const handleNavigateToUpdate = (id) => {
+        navigate("/customers/edit/" + id)
     }
     return (
         <div id="customer">
             <div className="container mt-2">
                 <div className="create">
                     <h4>Customers</h4>
-                    <button 
-                    onClick={handleNavigateToCreate}
-                    className="btn btn-primary">New Customer</button>
+                    <button
+                        onClick={handleNavigateToCreate}
+                        className="btn btn-primary">New Customer</button>
                 </div>
 
                 {/* <input type="text" className="form-control mt-4 mb-5" placeholder="Search Customer" id="" /> */}
@@ -70,6 +70,7 @@ const Customer = () => {
                         <table className="table">
                             <thead>
                                 <tr className="text-center">
+                                    <th>CustomerID</th>
                                     <th>Name</th>
                                     <th>Phone</th>
                                     <th>Email</th>
@@ -82,6 +83,7 @@ const Customer = () => {
                                     customers.map((customer, i) => {
                                         return (
                                             <tr>
+                                                <td >{customer.CustomerID}</td>
                                                 <td >{customer.CustomerName}</td>
                                                 <td >{customer.Phone}</td>
                                                 <td>{customer.Email}</td>
@@ -91,7 +93,7 @@ const Customer = () => {
                                                         <BiDotsHorizontalRounded className="actionBtn" />
                                                     </Dropdown.Toggle>
                                                     <Dropdown.Menu>
-                                                        <Dropdown.Item onClick={()=>handleNavigateToUpdate(customer.CustomerID)}>Edit</Dropdown.Item>
+                                                        <Dropdown.Item onClick={() => handleNavigateToUpdate(customer.CustomerID)}>Edit</Dropdown.Item>
                                                         <Dropdown.Item onClick={() => handleDeleteCustomer(customer.CustomerID)}>Delete</Dropdown.Item>
                                                     </Dropdown.Menu>
                                                 </Dropdown>

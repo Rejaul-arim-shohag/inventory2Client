@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { readExpenseById, readExpenseTypes, updateExpenseList } from '../../apiServices/allApi';
 import { errorToast, successToast } from '../../helper/validationHelper';
 
 const ExpenseUpdate = () => {
     const { expenseID } = useParams();
-    let amount, note = useRef();
+    let navigate = useNavigate()
+    let Amount, Note = useRef();
+    const [amount, setAmount]=useState();
+    const [note, setNote]=useState();
     const [expenseType, setExpenseType] = useState([]);
     const [selectedType, setSelectedType] = useState(0);
     
@@ -17,28 +20,28 @@ const ExpenseUpdate = () => {
 
         readExpenseById(expenseID)
             .then((result) => {
-                amount.value = result.Amount;
-                note.value = result.Note
+                setAmount = result.Amount;
+                setNote = result.Note
             })
     }, []);
 
-    // const handleUpdateExpense = (expenseID)=>{
-    //     const UpdatedAmount = amount.value;
-    //     const upDatedNote = note.value;
-    //     updateExpenseList(expenseID,selectedType,UpdatedAmount,upDatedNote)
-    //     .then((result)=>{
-    //         if(result){
-    //             successToast("EDit success")
-    //         } else{
-    //             errorToast("Edti failed")
-    //         }
-    //     })
-    // }
+    const handleUpdateExpense = (expenseID)=>{
+        // const UpdatedAmount = amount.value;
+        // const upDatedNote = note.value;
+        // updateExpenseList(expenseID,selectedType,UpdatedAmount,upDatedNote)
+        navigate("/expenseList")
+        // .then((result)=>{
+        //     if(result){
+        //         successToast("EDit success")
+        //     } else{
+        //         errorToast("Edti failed")
+        //     }
+        // })
+    }
     return (
         <div>
             <div className="col-md-6 mx-auto mt-5">
                 <h5 className="text-center">Edit your expense</h5>
-                <h5>Not Completed</h5>
                 <div>
                     <div className="input-group mb-3 p-2">
                         <select onChange={(e) => setSelectedType(e.target.value)} className="custom-select form-control" id="inputGroupSelect02">
@@ -59,14 +62,14 @@ const ExpenseUpdate = () => {
                     </div>
                     <div className="p-2">
                         <label>Expense Amount</label>
-                        <input ref={(input) => amount = input} type="text" className="form-control" />
+                        <input ref={(input) => Amount = input} type="text" className="form-control" />
                     </div>
                     <div className=" p-2">
                         <label>Note</label>
-                        <textarea ref={(input) => note = input} className="form-control" rows="5"></textarea>
+                        <textarea ref={(input) => Note = input} className="form-control" rows="5"></textarea>
                     </div>
                     <div className="p-2">
-                        <button className='btn btn-primary w-100'>Save</button>
+                        <button onClick={handleUpdateExpense} className='btn btn-primary w-100'>Save</button>
                     </div>
                 </div>
             </div>
